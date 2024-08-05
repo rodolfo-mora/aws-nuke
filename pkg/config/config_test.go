@@ -220,7 +220,7 @@ func TestConfigValidation(t *testing.T) {
 	for i, tc := range cases {
 		name := fmt.Sprintf("%d_%s/%v/%t", i, tc.ID, tc.Aliases, tc.ShouldFail)
 		t.Run(name, func(t *testing.T) {
-			err := config.ValidateAccount(tc.ID, tc.Aliases)
+			err := config.ValidateAccount(tc.ID, tc.Aliases, false)
 			if tc.ShouldFail && err == nil {
 				t.Fatal("Expected an error but didn't get one.")
 			}

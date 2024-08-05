@@ -150,6 +150,9 @@ func NewRootCommand() *cobra.Command {
 		&params.Force, "force", false,
 		"Don't ask for confirmation before deleting resources. "+
 			"Instead it waits 15s before continuing. Set --force-sleep to change the wait time.")
+	command.PersistentFlags().BoolVar(
+		&params.DisableProdProtection, "disable-prod-protection", false,
+		"Override deleting accounts with string ´prod´ in the name. ")
 	command.PersistentFlags().IntVar(
 		&params.ForceSleep, "force-sleep", 15,
 		"If specified and --force is set, wait this many seconds before deleting resources. "+

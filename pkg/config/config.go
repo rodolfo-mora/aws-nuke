@@ -117,7 +117,7 @@ func (c *Nuke) InBlocklist(searchID string) bool {
 	return false
 }
 
-func (c *Nuke) ValidateAccount(accountID string, aliases []string, force bool) error {
+func (c *Nuke) ValidateAccount(accountID string, aliases []string, protected bool) error {
 	if !c.HasBlocklist() {
 		return fmt.Errorf("The config file contains an empty blocklist. " +
 			"For safety reasons you need to specify at least one account ID. " +
@@ -136,7 +136,7 @@ func (c *Nuke) ValidateAccount(accountID string, aliases []string, force bool) e
 	}
 
 	for _, alias := range aliases {
-		if strings.Contains(strings.ToLower(alias), "prod") && !force {
+		if strings.Contains(strings.ToLower(alias), "prod") && !protected {
 			return fmt.Errorf("You are trying to nuke an account with the alias '%s', "+
 				"but it has the substring 'prod' in it. Aborting.", alias)
 		}
